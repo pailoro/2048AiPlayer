@@ -47,15 +47,6 @@ def draw_grid(matrix):
                 screen.blit(text_surface, text_rect)
     pygame.display.update()
 
-def display_score():
-    """Display the current score."""
-    font = pygame.font.SysFont(c.FONT[0], 20)  # Smaller font size for the score
-    text_surface = font.render(f"Score: {logic.score}", True, pygame.Color('black'), bg_color)
-    text_rect = text_surface.get_rect()
-    text_rect.topleft = (10, 10)  # Position the score in the top left corner
-    screen.blit(text_surface, text_rect)
-    pygame.display.update()
-
 def main():
     matrix = logic.new_game(c.GRID_LEN)
     score = 0  # Initialize score
@@ -83,7 +74,7 @@ def main():
                 if moved:
                     logic.add_two(matrix)  # Add a new tile after a successful move
                     score = logic.calculate_score(matrix)  # Update score
-                    pygame.display.set_caption(f"2048 AI Player - Score: {score}")
+                    pygame.display.set_caption(f"2048 AI Player - SCORE: {score}")
                     draw_grid(matrix)  # Redraw grid with updated matrix and score
 
         draw_grid(matrix)  # Ensure the grid is drawn even if no keys are pressed
