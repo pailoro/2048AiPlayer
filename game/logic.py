@@ -70,6 +70,9 @@ def compress(mat):
                 position += 1
     return new_mat, changed
 
+def calculate_score(mat):
+    """Calculate the total score by summing up the values of all tiles."""
+    return sum(sum(row) for row in mat)
 
 def merge(mat):
     """Merge tiles with the same value by doubling the
