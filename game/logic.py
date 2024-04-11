@@ -1,3 +1,10 @@
+"""Game logic module for the 2048 game.
+
+This module contains all the necessary functions to manage the game state,
+manipulate the game grid, and handle player movements and interactions.
+Includes functions to start the game, add new tiles, check game status,
+move and merge tiles, and calculate scores.
+"""
 import random
 
 import constants as c
