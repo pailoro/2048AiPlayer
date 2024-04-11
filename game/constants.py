@@ -1,3 +1,9 @@
+"""Configuration constants for the 2048 game.
+
+Includes game window settings, color schemes for tiles and background, 
+font settings for tile values, and control key mappings.
+"""
+
 SIZE = 600
 GRID_LEN = 4
 GRID_PADDING = 10

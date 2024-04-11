@@ -4,8 +4,10 @@ import constants as c
 
 
 def new_game(n):
-    """Start a new game by creating an n x n matrix filled with
-    zeros and adding two '2's in random positions."""
+    """Start a new game by creating an n x n matrix.
+
+    Filled with zeros and adding two '2's in random positions.
+    """
     matrix = [[0] * n for _ in range(n)]
     add_two(matrix)
     add_two(matrix)
@@ -15,6 +17,7 @@ def new_game(n):
 def add_two(mat):
     """
     Add a '2' or a '4' to a randomly chosen empty cell in the matrix.
+
     There's a higher probability of adding a '2'.
     """
     empty_cells = [
@@ -27,7 +30,10 @@ def add_two(mat):
 
 
 def game_state(mat):
-    """Check the game state to determine if the player has won, lost, or if the game is not over."""
+    """Check the game state.
+
+    If the player has won, lost, or if the game is not over.
+    """
     if any(2048 in row for row in mat):
         return "win"
     if any(0 in row for row in mat) or any_moves_possible(mat):
@@ -70,13 +76,19 @@ def compress(mat):
                 position += 1
     return new_mat, changed
 
+
 def calculate_score(mat):
     """Calculate the total score by summing up the values of all tiles."""
     return sum(sum(row) for row in mat)
 
+
 def merge(mat):
-    """Merge tiles with the same value by doubling the
-    value of the left tile and setting the right tile to 0."""
+    """
+    Merge tiles with the same value by doubling.
+
+    the value of the left tile and setting the right tile to 0.
+
+    """
     changed = False
     for i in range(c.GRID_LEN):
         for j in range(c.GRID_LEN - 1):
