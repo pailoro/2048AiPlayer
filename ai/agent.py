@@ -10,7 +10,7 @@ from stable_baselines3 import PPO
 
 
 class Agent:
-    """Define an agent that uses the PPO algorithm for the 2048 game."""
+    """Defines an agent that uses the PPO algorithm for the 2048 game."""
 
     def __init__(self, env):
         """Initialize the agent with a gym environment."""

@@ -4,20 +4,15 @@ Training module for the 2048 game agent.
 This script initializes the 2048 game environment, creates an agent,
 trains it on the environment, and saves the trained model.
 """
+import os
+import sys
+
 from agent import Agent
 from game_env import Game2048Env
 
-import gym
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "game"))
 
-
-# Register the environment using Gym
-gym.envs.registration.register(
-    id="2048Env-v0",
-    entry_point="game_env:Game2048Env",
-)
-
-env = gym.make("2048Env-v0")
-
+env = Game2048Env()
 agent = Agent(env)
 agent.train(timesteps=100000)
-agent.save("2048_model")
+agent.save("2048_model.zip")

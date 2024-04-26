@@ -9,9 +9,7 @@ then initializes the game and enters the main game loop.
 import sys
 
 import constants as c
-
 import logic
-
 import pygame
 
 # Initialize Pygame
