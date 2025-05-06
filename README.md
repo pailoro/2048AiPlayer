@@ -22,6 +22,16 @@ python3 ai/train.py
 
 In the `ai/train.py` file, you can adjust the timesteps parameter in the `agent.train(timesteps=100000)` function to define the number of training iterations for the model.
 
+## Watching the Trained Model
+
+After training your model using `python3 ai/train.py`, you can watch the model play autonomously by running:
+
+```bash
+python3 ai/play_model.py
+```
+
+This script loads the saved `2048_model` and displays the gameplay in the terminal.
+
 ## Future Work
 
 - TODO: Implement showing the interface playing from the trained model.
