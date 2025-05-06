@@ -1,3 +1,6 @@
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 """Main module for initializing and running the 2048 game using Pygame.
 
 This module sets up the Pygame environment,
@@ -8,9 +11,9 @@ then initializes the game and enters the main game loop.
 
 import sys
 
-import constants as c
+import game.constants as c
 
-import logic
+import game.logic as logic
 
 import pygame
 
