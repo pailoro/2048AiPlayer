@@ -1,6 +1,6 @@
 # 2048 AI Player
 
-This is a work in progress project aimed at developing an AI player for the popular 2048 game. Currently, the game part is ready and can be played by running the command in the terminal `python3 game/play.py`.
+This is a work in progress project aimed at developing an AI player for the popular 2048 game. Currently, the game part is ready and can be played by running the command in the terminal `python3 -m game.play`.
 
 It is developed using Python3 and the [Pygame](https://pypi.org/project/pygame/) library for the game interface. The AI player is developed using the [Gynasium](https://github.com/Farama-Foundation/Gymnasium) and [Numpy](https://numpy.org/) libraries.
 
