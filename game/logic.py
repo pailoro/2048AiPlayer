@@ -7,7 +7,7 @@ move and merge tiles, and calculate scores.
 """
 import random
 
-import constants as c
+import game.constants as c
 
 
 def new_game(n):

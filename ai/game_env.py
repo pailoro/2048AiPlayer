@@ -1,9 +1,10 @@
 """Custom Environment and Gym interface for the 2048 game."""
+import game.logic as logic
+from game import constants as c
 import gym
+import numpy as np
 from gym import spaces
 from gym.envs.registration import register
-
-import numpy as np
 
 
 class Game2048Env(gym.Env):
@@ -12,35 +13,41 @@ class Game2048Env(gym.Env):
     metadata = {"render.modes": ["console"]}
 
     def __init__(self):
-        """Initialize the environment."""
         super(Game2048Env, self).__init__()
         self.action_space = spaces.Discrete(4)
-        self.observation_space = spaces.Box(low=0, high=2048, shape=(4, 4), dtype=np.int)
-        self.state = np.zeros((4, 4), dtype=np.int)
-
+        self.observation_space = spaces.Box(low=0, high=2048, shape=(c.GRID_LEN, c.GRID_LEN), dtype=np.int32)
+        self.state = None
     def reset(self):
-        """Reset the environment to the initial state."""
-        self.state = np.zeros((4, 4), dtype=np.int)
-        return self.state
-
+        self.state = logic.new_game(c.GRID_LEN)
+        self.score = logic.calculate_score(self.state)
+        return np.array(self.state, dtype=np.int32)
     def step(self, action):
-        """Execute one timestep within the environment."""
+        directions = ["up", "down", "left", "right"]
+        direction = directions[action]
+        prev_state = [row[:] for row in self.state]
+        self.state, logic.moved = logic.move(self.state, direction)
         reward = 0
         done = False
-        info = {}
-        return self.state, reward, done, info
-
+        if logic.moved:
+            logic.add_two(self.state)
+        new_score = logic.calculate_score(self.state)
+        reward = new_score - self.score
+        self.score = new_score
+        status = logic.game_state(self.state)
+        if status == "win" or status == "lose":
+            done = True
+        info = {"status": status}
+        return np.array(self.state, dtype=np.int32), reward, done, info
     def render(self, mode="console"):
-        """Render the current state of the environment."""
+        """
+        Render the current state of the board in a readable grid format.
+        """
         if mode == "console":
-            print(self.state)
+            board = np.array(self.state)
+            for row in board:
+                print(" ".join(f"{val:4}" if val != 0 else "   ." for val in row))
         else:
             print("Render mode not supported, defaulting to console output.")
-            print(self.state)
-
-
-# Register the environment
-register(
-    id="2048Env-v0",
-    entry_point="game_env:Game2048Env",
-)
+            board = np.array(self.state)
+            for row in board:
+                print(" ".join(f"{val:4}" if val != 0 else "   ." for val in row))
